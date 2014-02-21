@@ -2,7 +2,7 @@
 /***
 | Orignal script from: VJ (VJftw @ ZPanel Forums)
 ***/
-$tmp = '/sdnsec :- ';
+$tmps = '/sdnsec :- ';
 
 function copyFolderContents($src, $dest) {
 	$path = realpath($src);
@@ -74,14 +74,14 @@ else
 	$l = '/';	
 }
 // set the source and destination
-$src = $zpanelRoot.'modules'.$l.'ssh_module'.$l.'tmp'.$l;
+$src = $zpanelRoot.'modules'.$l.'ssh_module'.$l.'tmps'.$l;
 $dst = $zpanelRoot.'modules'.$l.'ssh_module'.$l.'sndsec'.$l;
 // create the destination folder
-error_log($tmp.'Creating '.$dst);
+error_log($tmps.'Creating '.$dst);
 mkdir($dst, 0777);
 chmod($dst, 0777);
 // copy files to /modules/module_name/folder
-error_log($tmp.'Moving tmp files to '.$dst);
+error_log($tmps.'Moving tmps files to '.$dst);
 copyFolderContents($src, $dst);
 // remove the App files that were just copied
 removeDirectoryContents($src);
@@ -101,8 +101,8 @@ sleep(2);
 $output = shell_exec('chmod 0600 /etc/zpanel/panel/modules/ssh_module/deploy/README.txt');
 echo "Changing README.txt permission to 0600 :root\n";
 sleep(2);
-$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmp');
-echo "Cleaning up tmp files and installation, please wait...\n";
+$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmps');
+echo "Cleaning up tmps files and installation, please wait...\n";
 sleep(2);
 echo "You may now enable the module in your ZPanel Module Admin\n";
 sleep (2);
