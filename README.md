@@ -1,5 +1,4 @@
 ssh_module
 ==========
 
-SSH Terminal for ZPanel Administration Only.
-For CentOS servers only.
+SSH Terminal for ZPanel Administration and CentOS 6+ servers only.
