@@ -6,7 +6,7 @@ sleep(5);
 $output = shell_exec('chmod 0600 /etc/zpanel/panel/modules/ssh_module/deploy/README.txt');
 echo "Checking and cleaning file.........\n";
 sleep(3);
-$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmp');
-echo "Removing tmp files, please wait....\n";
+$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmps');
+echo "Removing tmps files, please wait....\n";
 sleep(3);
 ?>
