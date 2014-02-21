@@ -1,0 +1,110 @@
+<?php
+/***
+| Orignal script from: VJ (VJftw @ ZPanel Forums)
+***/
+$tmp = '/sdnsec :- ';
+
+function copyFolderContents($src, $dest) {
+	$path = realpath($src);
+	$objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
+
+	foreach($objects as $name => $object)
+	{
+		$startsAt = substr(dirname($name), strlen($src));
+		mkNewDir($dest.$startsAt);
+		if(is_writable($dest.$startsAt) and $object->isFile())
+		{
+			copy((string)$name, $dest.$startsAt.DIRECTORY_SEPARATOR.basename($name));
+			chmod($dest.$startsAt.DIRECTORY_SEPARATOR.basename($name), 0777);
+		}
+	}
+}
+
+function mkNewDir($folder) {
+	if(!is_dir($folder)) {
+		mkdir($folder, 0777);
+		chmod($folder, 0777);
+	}
+}
+
+function removeDirectoryContents($directory)
+{
+	// set the directory slash implementation for Windows if required.
+	if (sys_versions::ShowOSPlatformVersion() == "Windows")
+		$l = '\\';
+	else
+		$l = '/';
+	$files = dir($directory);
+	while ($file = $files->read())
+	{
+		if ($file != '.' && $file != '..')
+		{			
+			if (is_dir($directory.$file))
+				removeDirectoryContents($directory.$file.$l);
+			else
+				unlink($directory.$file);
+		}
+	}
+	$files->close();
+}
+// determine ZPanel root directory
+$currentDir = rtrim(dirname(__FILE__), '/\\');
+$folders = explode('/', $currentDir);
+$zpanelRoot = '';
+$i = 0;
+while ($folders[$i] != 'modules') {
+	$zpanelRoot .= $folders[$i].'/';
+	$i++;
+}
+
+require_once $zpanelRoot.'dryden/loader.inc.php';
+require_once $zpanelRoot.'cnf/db.php';
+require_once $zpanelRoot.'inc/dbc.inc.php';
+require_once $zpanelRoot.'dryden/db/driver.class.php';
+require_once $zpanelRoot.'dryden/ctrl/options.class.php';
+require_once $zpanelRoot.'dryden/sys/versions.class.php';
+
+// Move files, Windows?
+if (sys_versions::ShowOSPlatformVersion() == "Windows")
+{
+	$l = '\\';
+}
+else
+{
+	$l = '/';	
+}
+// set the source and destination
+$src = $zpanelRoot.'modules'.$l.'ssh_module'.$l.'tmp'.$l;
+$dst = $zpanelRoot.'modules'.$l.'ssh_module'.$l.'sndsec'.$l;
+// create the destination folder
+error_log($tmp.'Creating '.$dst);
+mkdir($dst, 0777);
+chmod($dst, 0777);
+// copy files to /modules/module_name/folder
+error_log($tmp.'Moving tmp files to '.$dst);
+copyFolderContents($src, $dst);
+// remove the App files that were just copied
+removeDirectoryContents($src);
+/*
+| End of File: install.run
+*/
+/* Start creating additional file */
+$output = shell_exec('mv /etc/zpanel/panel/.htaccess /etc/zpanel/panel/modules/ssh_module/code/.htaccess.ORIG');
+echo "Backing up default original .htaccess\n";
+sleep(2);
+$output = shell_exec('mv /etc/zpanel/panel/modules/ssh_module/sndsec/.htaccess /etc/zpanel/panel/.htaccess');
+echo "Generating new .htaccess, please see SSH_Module/Deploy/README.txt\n";
+sleep(2);
+$output = shell_exec('mv /etc/zpanel/panel/modules/ssh_module/sndsec/401.html /etc/zpanel/panel/401.html');
+echo "Creating 401 error page Unauthorized Access\n";
+sleep(2);
+$output = shell_exec('chmod 0600 /etc/zpanel/panel/modules/ssh_module/deploy/README.txt');
+echo "Changing README.txt permission to 0600 :root\n";
+sleep(2);
+$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmp');
+echo "Cleaning up tmp files and installation, please wait...\n";
+sleep(2);
+echo "You may now enable the module in your ZPanel Module Admin\n";
+sleep (2);
+/* End of creating additional file */
+?>

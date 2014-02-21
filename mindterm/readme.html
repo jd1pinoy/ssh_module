@@ -1,0 +1,61 @@
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Cache-control&quot; content=&quot;no-cache&quot;&gt;
+&lt;meta http-equiv=&quot;Expires&quot; content=&quot;-1&quot;&gt;
+&lt;script language=&quot;Javascript1.2&quot;&gt;
+
+
+// Set the message for the alert box
+am = &quot;DO NOT RELOAD THIS PAGE! \n\nKindly use the Reload Page Button instead.&quot;;
+
+// do not edit below this line
+// ===========================
+bV  = parseInt(navigator.appVersion)
+bNS = navigator.appName==&quot;Netscape&quot;
+bIE = navigator.appName==&quot;Microsoft Internet Explorer&quot;
+
+function nrc(e) {
+   if (bNS &amp;&amp; e.which &gt; 1){
+      alert(am)
+      return false
+   } else if (bIE &amp;&amp; (event.button &gt;1)) {
+     alert(am)
+     return false;
+   }
+}
+
+document.onmousedown = nrc;
+if (document.layers) window.captureEvents(Event.MOUSEDOWN);
+if (bNS &amp;&amp; bV&lt;5) window.onmousedown = nrc;
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;strong&gt;&lt;h2&gt;CryptZone Mindterm Read Notes: &lt;/h2&gt;&lt;/strong&gt;&lt;/p&gt;
+    &lt;p class=&quot;style1&quot; id=&quot;contern_mindterm&quot;&gt;The security model of Java requires applets to be signed if they are going to perform certain operations. Operations which require signing include accessing the local file-system, opening local tcp-ports and connecting to other machines than the applet was downloaded from. If you bought a commercial copy of MindTerm you should receive a signed version of the applet. But if you are using the free version, or have done modifications, you must sign it yourself. Fortunately there are lots of tutorials on the web on how to do this. For example see the list of tutorials at &lt;a href=&quot;http://mindprod.com/jgloss/signedapplets.html&quot; target=&quot;_blank&quot;&gt;http://mindprod.com/jgloss/signedapplets.html&lt;/a&gt; .&lt;/p&gt;
+	
+	&lt;tr&gt;
+    &lt;td&gt;&lt;p id=&quot;myscc_con1&quot;&gt;Get the latest Java &lt;a href=&quot;http://www.java.com/inc/BrowserRedirect1.jsp?locale=en&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&lt;span class=&quot;style1&quot;&gt;Mindterm is not for commercial use. The use of this module is for  administrator and/or for private purposes only;&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;../modules/ssh_module/assets/upgate.t.png&quot; width=&quot;550&quot; height=&quot;171&quot; alt=&quot;AppGate Mindterm&quot; longdesc=&quot;http://www.cryptzone.com/&quot; /&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&lt;span class=&quot;style1&quot;&gt;Visit CryptZone for more information using AppGate Mindterm:&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+    &lt;td&gt;&lt;span class=&quot;style1&quot;&gt;CryptZone Main Site: &lt;a href=&quot;http://cryptzone.com/&quot; target=&quot;_blank&quot;&gt;http://cryptzone.com/ &lt;/a&gt;&lt;br/&gt;
+    CryptZone Tech: &lt;a href=&quot;http://tech.cryptzone.com/&quot; target=&quot;_blank&quot;&gt;http://tech.cryptzone.com/&lt;/a&gt;&lt;br/&gt;
+	CryptZone Mindterm: &lt;a href=&quot;http://tech.cryptzone.com/mindterm/&quot; target=&quot;_blank&quot;&gt;http://tech.cryptzone.com/mindterm&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/html&gt;
+&lt;/body&gt;

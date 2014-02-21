@@ -1,0 +1,12 @@
+<?php
+//Upgrade interface from 10.0.2 to 10.1.0
+$output = shell_exec('mv /etc/zpanel/panel/modules/ssh_module/deploy/module.zpm /etc/zpanel/panel/modules/ssh_module/module.zpm');
+echo "Changing 10.0.2 to 10.1.0 interface, please wait....\n";
+sleep(5);
+$output = shell_exec('chmod 0600 /etc/zpanel/panel/modules/ssh_module/deploy/README.txt');
+echo "Checking and cleaning file.........\n";
+sleep(3);
+$output = shell_exec('rm -r -f /etc/zpanel/panel/modules/ssh_module/tmp');
+echo "Removing tmp files, please wait....\n";
+sleep(3);
+?>

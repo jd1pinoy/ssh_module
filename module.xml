@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<name>SSH Console</name>
+	<version>160</version>
+	<defaultcat>Server Admin</defaultcat>
+	<type>user</type>
+	<desc>SSH Console using secure Mindterm Java Applet program for ZPanelX Server Administrator only.</desc>
+	<authorname>JD1pinoy</authorname>
+	<authoremail>jd1pinoy@gmx.ph</authoremail>
+	<authorurl>http://zpxmod.net.tf/</authorurl>
+	<updateurl>http://zpxmod.net.tf/filebox/zpp/ups-ssh.xml</updateurl>
+	<ostype>lin</ostype>
+</module>

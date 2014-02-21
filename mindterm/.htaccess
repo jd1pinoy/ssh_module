@@ -1,0 +1,11 @@
+##################################################
+# DO NOT DELETE THIS FILE                        #
+##################################################
+AuthUserFile /etc/zpanel/panel/modules/ssh_module/sndsec/snd.htpasswd
+AuthGroupFile /dev/null
+AuthName "Password Protected Area"
+AuthType Basic
+
+<limit GET POST>
+require valid-user
+</limit>

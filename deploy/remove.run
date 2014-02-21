@@ -1,0 +1,27 @@
+<?php
+/*
+* Let's remove files created by SSH_Module.
+* and revert original files.
+*/
+$filename = '/etc/zpanel/panel/modules/ssh_module/code/.htaccess.ORIG';
+$file = '.htaccess.ORIG';
+if (file_exists($filename)) {
+    echo "The file $file exists";
+} else {
+    echo "The file $file does not exist";
+}
+$output = shell_exec('rm -f /etc/zpanel/panel/.htaccess');
+echo "Removing custom .htaccess, please wait...\n";
+sleep (1);
+$output = shell_exec('mv /etc/zpanel/panel/modules/ssh_module/code/.htaccess.ORIG /etc/zpanel/panel/.htaccess');
+echo "Reverting original .htaccess\n";
+sleep(2);
+$output = shell_exec('rm -f /etc/zpanel/panel/401.html');
+echo "Removing 401.html, please wait...\n";
+sleep (1);
+$output = shell_exec('chmod 644 /etc/zpanel/panel/.htaccess');
+echo "Changing .htaccess file permission, please wait...\n";
+sleep(2);
+echo "Finalizing while zppy removes the module\n";
+sleep(2);
+?>

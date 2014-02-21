@@ -1,0 +1,56 @@
+<?php 
+session_start();
+if (!isset($_SESSION['zpuid'])) {
+    die("<h1>Unauthorized request!</h1> Request not accessible outside!");
+}
+?>
+<script language=JavaScript>
+<!--
+var message="";
+///////////////////////////////////
+function clickIE() {if (document.all) {(message);return false;}}
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) {
+if (e.which==2||e.which==3) {(message);return false;}}}
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
+
+document.oncontextmenu=new Function("return false")
+// --> 
+</script>
+<script language="JavaScript">
+var needToConfirm = true;
+window.onbeforeunload = confirmExit;
+function confirmExit()
+{
+if (needToConfirm)
+return "Are you sure you want to exit?";
+}
+</script>
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px;">Session started...<img src="data:image/gif;base64,R0lGODlhMgAKAOZ/APNumJmCu/39/fvm4/qlHJDGbOrT502Uz+wlKusXWmq9Rfnm2fXc1ajLjvKyVmZwssCDtDNQo9nU6PC5aun29rLE3YRxrrJLnPPJiu1seff31+jmE7x2rW+dy3mo1dnl8/b2xjmNy+Xi8OsdJcudwW5Too212+toTufmZOrz5MvT5/rCa/jDWqOmz4uSxHXCxpfU12ZKnMrm6Pv75GjIzvHm8XHL0M7J3/L18eze6+Px2XfBTuXjI+7mW4m+Z1xoqfrWx+fu9LPVoNvYI97aX+vAh9ru0HODu/D5+dzx8sPR44zHy+BiSPXx5+Hq9tXo6uvnkP769fPy+Pzv3cfcrKaYxOjm8pLGyfb169fVZJzRfpvRzK/Y2erv98/j8Y3Q2EFbqPnHyOzvwvHSpbVYoOHu2O4tam7Kz/z39f7oxtpdReBic+/PzvrF1pbN0eucp/3y6+6dja4+l+HgjPr66u3wz/n4+l3EzObs+OAeI9lbbd/e7vOgq/z8/P///////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQFAAB/ACwAAAAAMgAKAAAHWYB+fYOEfX5+f4mKi4yNjo+LC2pMlJRqDIiQmpuQDHkjoKFAmZylpZ4jCKoII6Omr5uoq6yusLaNsqutpLe9uaq7vcJ/qKGgtcO2C0wnzc6YybeH09S80aWBACH5BAUAAH8ALAQAAAAKAAoAAAcxgAICfYSFAn4DRQ6LjEV+CxMEkpMTj5GTkpWQmJmWnASal5ihn5UDGIyMGH6sra5+gQAh+QQFAAB/ACwJAAAACgAKAAAHMoB+fYOEfX5+WFlEi4x1fk1DG5KTII+Rk5KVkJiZlpwbmpeYoZ+VWEQoqak9Goeur4eBACH5BAUAAH8ALAAAAAAXAAoAAAdjgH+Cg4SDAgKCfYp9An4DJ5CFhFhCPpaXDX4LCJySgzMNCqKjPn5/CGZ/U55/oKOjBZoIan8DrK4KO7CmnaueuKK6sU2otbehubunnL6SwKR+TScZGax/dJUF2tqZ1t5+4H6BACH5BAUAAH8ALAAAAAAcAAoAAAdzgH8Cg3+FhoeHfgJ/fY2Nfn5NcZMMhhOIhzhXS5ydT34DGaJAmKU4LzSpqXcyoKIZpIY4pX+nZza4NjStTa+xtIUKtrm6raGjmbTDubt+f77AhsIvt8zG0IUOwKeqq61wk3EMRYWXym4w6elfn9HuhZDxgQAh+QQJAAB/ACwAAAAAIAAKAAAHh4B/goMChQKDiIkCfoJ9jo5+UQyTC2NFRRhTiZt/FEodoKEeAmhhpgxFDg4rC388PHScnRUhtbYHfaWnqauar7KzIQfDxKSmYQwYqiu+PMAUtMTEuceoy83P0dIHxqfKva7OstDC29S7y62/47S2tdySkwNjGPVNwINInx78/Yf4ADf5GegnEAAh+QQJAAB/ACwAAAAAMgAKAAAH14B/gn9+fgKHhoeHfYyGjAJ+jH2Lko9+g5iZmX5TC55Tc6EaQj4FBXZXS0sUSh2uXUc/srMtl5q3g5xpu1NEPT0aDQo7OzgvNDQUFSHMeD8R0NEutri3ury+wA3ExS9nNsohBwddz9HQ09W412lTv9rcxt/h4+Xn6NTqmOy9v8Hx3sAtq2fuXDp9m6bsavfuHzF5AsWRMwdGWj6EhBRi8yfs4bFky5jZu3cQoyA/cNpNmQKl5QwqBbRoweEGBgwkrTx4kHLkgU+fP2qZzFWoqNGjSJMexRgIACH5BAkAAH8ALAAAAAAyAAoAAAfOgH+Cg4N+AoeIiX19An6LjAKLjY+UfoSXmIMCGpwzVA1CQilXpBRKHahdRz8/IhIWsLEWVpm1g30guZ5avDovZzYUFSHEeD8REXs3MczNMSK2tri6VLxaKS82NkjDBwddx8nLJeTl0NGZ0yC7vNja3CHe4MjKMeXm6Om569Xt2dvdvoUTMe5eiXP5CKljd+0fPHnh6hk8mPDSwn4NgQkjFmKeOGfNEFb8s6kTlVCitsCAgeSUBw9Sjjx4YOWVLFi0Rgryw7Onz59Ag/q0FQgAIfkECQAAfwAsAAAAADIACgAAB9aAf4KDhIN+fgKJiol+fY6Jj42PAo6VfQJ+hZqafillnylcokFKHR4eXUc/PyISFq8iJByztCSZm7h/nUa8KVswMEkVIQcHXT8REXs3Mc0iEHJyF9NyHLe5nCm8Rr7AwsXGyMrMJSXP0+gXENfYhLu9v8EV4MfJyzHl52QX++rs7YLecYtHYVgxKeJEkDMHId20dQALCewmj564e/kaTusHMaIhbfC8GQxnj5kzaOmq/QPYSYfLUKIoKDnlQcqRBw+suHplRRatWbY8GjpEtKjRo0iNEgoEACH5BAkAAH8ALAAAAAAyAAoAAAfMgH+Cg4SFg35+AoqJiop9fQJ+j5ACj5GTmH6Gm4UCQUlBFComJhVORw8PVhIWrSIkHBw1DHprtrcDnLp/Akm+FEoeHiYfPxFgIjcxyyIQchc1bAnT1Am5u5u9v8GkHw9gyMolJc0X0NLV09fYnb5JwMPEP+DJMePl5+nq7Iba79zEvoWzRw6CuWj6rPFrt+3FsGL0xBU8iC7duoW83MF7aGwgM2f59F1c6IkCBSReTLgx5SLVqlYWrMCSxWBNhps4R/JDxLOnz59AfQYCACH5BAkAAH8ALAAAAAAyAAoAAAeygH+Cg4SFhn9+fgKLjIt+fZCLkY+QlX1+h5mHflIfnngtLi4SNxamViQcHDUMemuvsAOas4N+XV64Ti5HRyo3MSUlIhByFzVsCcnKCbK0s7a4Xrq8vsAlVhAXxsjLyc3OmdC5u703wcLZ293e4Jri0uTVwdjax+vM7eG349TmwcP1uHX7lo/Qu2nlrGErZm8dwYKCOH1w4qRLqFEqTAVApYrVmgwgQz6EmKikyZMoU/oJBAAh+QQJAAB/ACwAAAAAMgAKAAAHmYB/goOEhYaGfn4Ci4qLi319An6QlJB+h5iZg357EhIiElWieyQcHDUMemurrAOar4gSKip7NxYBARIQchc1bAnAwQmusMV/frK0N7i5EBdkvsLBxMavyLO1t83P0dLD1bDXysy63L/e1OCY4tm45dDn0unqsdi27ru98cLz9ISce/aAElWFlClUazIoXNjPn6BEECNKnAgxEAAh+QQJAAB/ACwAAAAAMgAKAAAHfIB/goOEhYaHg35+AoyNjH59kZJ9foiWl4R+UhJ7eyIkoFIMemulpgOYqYiaEq2fHBxSbAm0tQmoqrmJm617JBAQsra1uLq5rK6/wbPDt8a6yJzKws3Fz5jRn8DUw9bXltG+HBA1zN3fqZqdnjehDGsZ8fLe6IaK9/j5+YEAIfkECQAAfwAsAAAAADIACgAAB2WAf4KDhIWGh4h+fgICin2PkH1+iJSVlH41OTl2DHprn6ADlqOkfjkGBnZsCaytCaKksYmnqauurLCyuoOmqKq3uLvCf721wK/Du8W/wLnJpbTMt87PlpianGsZ29zU1ZeK4eLigQAh+QQFAAB/ACwAAAAAMgAKAAAHUoB/goOEhYaHiIR+fn2Njn1+iZKTkn4MemuZmgOUnZ5/fmwJo6QJnJ+oiKGlpKepr4OrrKawtaCis662qLKsuruevaW/wJSWaxnJysTFlYvP0IEAIfkEBQAAfwAsJAAAAAoACgAABziAfgJ9hIUCAn4kHIuMJAN+EHJyF5RyHI8QlJoXEJgXZJ+UnZCbop6UoJyYk5qWj4qMi45+tLW2gQAh+QQFAAB/ACwfAAAACgAKAAAHMYB+fn2EhX2CEhaKixZWfjcxkZIxe48xJZiZIpaZmpydJZuQoKGWk5GbiYyKjoKur4EAIfkEBQAAfwAsGwAAABcACgAAB1mAfgJ9hH1/fwICh4uMjH5HP5GSLVaNjBmYTX0/EZ2eLiKWi2akiJyenaCih6Rmpqipoautr7Cqs6UCp2CfsqK0urARt7+ljw/IyD+Uq3B/AH9wftN+q9aHgQAh+QQFAAB/ACwWAAAAHAAKAAAHb4B+fn2EhH9/foeKi4wCjohKHZKTHlKMl4cMb5twfhUhoKEHlpgiZH8XfwwArJ2fB7CxpJhkp39ArACuIbGymIq2q62evL2jv3+1h7jDr8aztJm5u6Ggx7+nqcy6fpEe3+DQjBAQmXzniIKCyOyLgQAh+QQJAAB/ACwSAAAAIAAKAAAHkYB+An2EfX9/goeKi4sCjox/fVdLlJVPQZCQOSScfwMMoH12LzSlpXcyeJmHJa0GEBwcJANttVGjZza6NjSpq1aKexCwb7S2uLu8vpnAhwYksLO1bbcvubu9qsyKr8TG1MjYy5A13NCy39Wmp+OQrSWvHADSx24w9/dfT12r5QF/NTiR8ASKQRQ/CP2sWsjwTyAAIfkECQAAfwAsAAAAADIACgAAB9SAf4KDhIN+An2JigKIiYeKfouMjIeUfoWYmH5CPp2eDUhLok9BHR0eUg8PPy17Va85sTk1l5m2f34NCru8Pkg0NHcyeCEhB1JgEREuEgHOOQbRObW3mrq8uwVINjY0wwfgyMnMzgHQ0tTVhLm7O7za3N544Mdg483P0QbT6tbY7vC6fQOHxt4yfOb08eu37pq7bNsEzgtnkFw+dAwbYtvlC5gwYsaQKbOYEGNGQZt8FFi5EhQMGF+edPFA084RVa1eVbEii9ZJlH6CCh1KtKjRoYQCAQAh+QQJAAB/ACwAAAAAMgAKAAAH14B/goODfn2HiH1+AocCjIeLiI6TlH6El5iDWFlEnZ51KT4+DUhLpk9dHR0eIlUuLhUie7N2mbaaQxu6uyApCgo+SDQ0dzJ4B8h7R0cPLXsS0LW3tli5u7q9vwVINjY0Ml3IByIuyy0i0BLS05jV19i+Ctvd3+HJ5UfO6evshO7v2eRx8wYOWYc9+M7t69fO2rWA8wjaO4DQ3LNoDC/9exgv2LBix0KMW5bvorqMhHAQQcGSZQ8NKQoUIAUDxhdUHnJaafGqgpVZe/hl9EO0qNGjSJMavRUIACH5BAkAAH8ALAAAAAAyAAoAAAfTgH+Cf34CfYeIAoaHhYeKiIWKkop+foOXmJh+RQ6dnkVYRKJ1KT4+DUhuS0syHyavVhJ7ElaWmbeDfhMEvL0TMxvBICkKCj5INjR3rR7NeyoqSiK2uLe6vb7AwsQKBcjJzB4mz9DT1bjX2AS/wRvDxd424B/N49Aq5ueZ6djs2/DfaISzV46avly71Plzxy3evHrk8Bk8SChhP20Mix1LtsxLMw8R81EU5AeDJ08Y6KBA0UNDigIFGtiBAcPNEyuvTFjZM6vWyFyVggodSrToUIqBAAAh+QQJAAB/ACwAAAAAMgAKAAAH1oB+fYOEfX4CgwKIg4eJioqHj35/lJWWl5ULakycnGoMUw4ORVhEpnUpPj4NFFxcWx9BHx9Ok5i3lgx5I7y9QFMEBBMzG8WoOwoFFDBfX15OXl4ftri4uiMI2Qgjv8HDxRsgKTs7yjDMz9HT1dXX2tvdwsTF4uTm6NDS1OyX7trcwOSBq1duGT51+/hV8pcNoLd54cYVPOcs3zqF/Xb14hXvG71xyZY1k2ExIcYFTE6oXMkAjigMdFCg6KEBRwEtrFxxedLFCS2TCv0IHUq0qNGjRDFeCgQAIfkECQAAfwAsAAAAADIACgAAB7yAfn2DhH1+AoMCiIOHio6Kfn5/k5SVlpd/C2pMnJxqDFMODkVYRFlZdTpCDVQUSUFJSJKYtJcMeSO5ukBTBAQTdDzCYkZaWkKuSbGztc1/tyMI0ggjvL4TM8I8YmXGyMrLzs7Q09TWv8HD3cfJ4eK15NPVvb/Z6t7tsu/wuOXz1+m2rfumTN8+TNB05TqHTRs3fOAMHrS0gMmJixgZwBGFgQ6Kj6mECKGChIIrO8wmUorEsqXLlzBTqvwTCAAh+QQJAAB/ACwAAAAAMgAKAAAHoYB+fYOEfX4CgwKKioeMfn+QkZKTlJQLakyZmWoMcA4ORRpzo3UpZWUpj5WrrJAMeSOxskBTBAQTGii6pUZGOqqtwZKvIwjGCCO0tiu5uym9v8LSrrDHyEAzy80ovL7A063E1sm1BMy6KGLP3uDC4sfJ2ebb3dHt4bCyscrz6PXf9ywxOUGwYKcJLDDMgMKwlA4dqQKy8kOxosWLGClKXBUIACH5BAkAAH8ALAAAAAAyAAoAAAeFgH59g4R9fgKIiYh+fn+Oj5CRkpOPC2pMmJhqDHAYGGMzGqJRjZSmp48MeSOsrUBwLCwYMyC1pKi4lKojCL0II6+xs7Ugt7nHqau+v8GytLalyMe7y8CwzsTG0rnUvtbCz8XR26i7razNw9DkuQtMJ/DxDHSeY3SiGtrspoz9/v//9qEKBAAh+QQFAAB/ACwAAAAAMgAKAAAHbYB+fYOEfX5+AgKHf4yNjo+QkZILakyWlmoMUQsLU36SoKGgDHkjpqdAUWlpnqKur6QjCLMII6mrra+6krG0tbesn7vDjr20tqrBxMt/xrPIuMLMu7GnpsC507oLTCfe35pT4tLarofn6OnluoEAOw==" alt="loaded" width="150" height="10"><br>Don't close this window while console is open</p>
+<center>
+<APPLET CODE="com.mindbright.application.MindTerm.class" ARCHIVE="mindterm241.weaversigned.jar" WIDTH=800 HEIGHT=400\>
+<PARAM NAME="cabinets" VALUE="mindterm.cab">
+<PARAM NAME="term-type" value="linux">
+<PARAM NAME="sepframe" value="false">
+<PARAM NAME="debug" value="true">
+<PARAM NAME="username" value="Your SSH username">
+<PARAM NAME="exit-on-logout" value="true">
+<PARAM NAME="menus" value="yes">
+<PARAM NAME="autowrap" value="false">
+<PARAM NAME="scrollbar" value="right">
+<PARAM NAME="save-lines" value="50">
+<PARAM NAME="ascii-line" value="true">
+<PARAM NAME="font-size" value="12">
+<PARAM NAME="copy-select" value="true">
+<PARAM NAME="copy-crnl" value="true">
+<PARAM NAME="paste-button" value="right">
+<PARAM NAME="bg-color" value="i_black">
+<PARAM NAME="fg-color" value="white">
+<PARAM NAME="scrollbar" value="right">
+<PARAM NAME="resizable" value="false">
+<PARAM NAME="height" value="450">
+<PARAM NAME="width" value="800">
+</APPLET>
+</center>
